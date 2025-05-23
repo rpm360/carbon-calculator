@@ -13,17 +13,17 @@
     
     <!-- Open Graph / Facebook Meta Tags -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yourusername.github.io/carbon-calculator/" />
+    <meta property="og:url" content="https://rpm360.github.io/carbon-calculator/" />
     <meta property="og:title" content="Carbon Calculator - Track and Reduce Your Carbon Footprint" />
     <meta property="og:description" content="Calculate and understand your carbon emissions with personalized insights and AI-powered recommendations to reduce your environmental impact." />
-    <meta property="og:image" content="https://yourusername.github.io/carbon-calculator/og-image.jpg" />
+    <meta property="og:image" content="https://rpm360.github.io/carbon-calculator/og-image.jpg" />
     
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://yourusername.github.io/carbon-calculator/" />
+    <meta name="twitter:url" content="https://rpm360.github.io/carbon-calculator/" />
     <meta name="twitter:title" content="Carbon Calculator - Track and Reduce Your Carbon Footprint" />
     <meta name="twitter:description" content="Calculate and understand your carbon emissions with personalized insights and AI-powered recommendations." />
-    <meta name="twitter:image" content="https://yourusername.github.io/carbon-calculator/og-image.jpg" />
+    <meta name="twitter:image" content="https://rpm360.github.io/carbon-calculator/og-image.jpg" />
     
     <!-- Theme Color for Mobile Browsers -->
     <meta name="theme-color" content="#4CAF50" />
@@ -31,9 +31,23 @@
     <link rel="modulepreload" href="/carbon-calculator/assets/vendor.4d37f081.js">
     <link rel="modulepreload" href="/carbon-calculator/assets/charts.f21c5eb0.js">
     <link rel="stylesheet" href="/carbon-calculator/assets/index.c3fb53f0.css">
+    
+    <!-- Handle 404 errors for direct file requests -->
+    <script>
+      // Check if we're getting a 404 for a source file
+      window.addEventListener('error', function(e) {
+        const target = e.target;
+        if (target && target.tagName === 'SCRIPT' && target.src && target.src.includes('/src/')) {
+          console.error('Error loading script:', target.src);
+          // Redirect to the main page if we're trying to load a source file directly
+          if (window.location.pathname !== '/carbon-calculator/') {
+            window.location.href = '/carbon-calculator/';
+          }
+        }
+      }, true);
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    
   </body>
 </html>
