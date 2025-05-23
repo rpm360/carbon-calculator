@@ -1,34 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+// React is used implicitly by JSX
+import { lazy, Suspense } from 'react'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { CarbonDataProvider } from './context/CarbonDataContext'
+import ErrorBoundary from './components/ErrorBoundary'
+import LoadingSpinner from './components/LoadingSpinner'
 import './App.css'
+import './styles/ErrorBoundary.css'
+
+// Lazy load page components for better performance
+const WelcomePage = lazy(() => import('./pages/WelcomePage'))
+const AuthPage = lazy(() => import('./pages/AuthPage'))
+const ReportPage = lazy(() => import('./pages/ReportPage'))
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <ErrorBoundary>
+      <CarbonDataProvider>
+        <Router>
+          <div className="app-container">
+            <Suspense fallback={<LoadingSpinner message="Loading Carbon Calculator..." />}>
+              <Switch>
+                <Route exact path="/" component={WelcomePage} />
+                <Route path="/auth" component={AuthPage} />
+                <Route path="/report" component={ReportPage} />
+              </Switch>
+            </Suspense>
+          </div>
+        </Router>
+      </CarbonDataProvider>
+    </ErrorBoundary>
   )
 }
 
