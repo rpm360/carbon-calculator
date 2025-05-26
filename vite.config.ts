@@ -8,7 +8,7 @@ export default defineConfig({
   // Use the repository name for GitHub Pages deployment
   // e.g., if your repository is username/carbon-calculator, use '/carbon-calculator/'
   // For local development, use '/' (default)
-  base: '/carbon-calculator/',
+  base: '/',
   build: {
     outDir: 'dist',
     // Generate source maps for better debugging
